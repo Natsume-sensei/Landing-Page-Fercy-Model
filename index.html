@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FerCy Model Analytics - Official Homepage</title>
+    <meta name="description" content="Official Homepage for FerCy Model Analytics Version 1.0. Advanced PLS-SEM with NIPALS Engine and AI Automated Reporting. Developed by Universitas Banten.">
+    
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2103/2103633.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* iOS Style Palette - Pure & Indigo */
+            --pure-black: #000000;
+            --ios-dark-gray: #1c1c1e;
+            --ios-gray-2: #2c2c2e;
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #f5f5f7;
+            --text-muted: #8e8e93;
+            
+            /* Apple System Accents */
+            --accent-indigo: #5e5ce6;
+            --accent-cyan: #32ade6;
+            --accent-green: #30d158;
+            --accent-orange: #ff9f0a;
+            
+            /* Gradient for Branding */
+            --brand-gradient: linear-gradient(135deg, #5e5ce6 0%, #32ade6 100%);
+            
+            /* Spacing & Borders */
+            --radius-ios: 18px;
+            --ease-ios: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--pure-black);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Gradient Background Parallax */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(circle at 15% 30%, rgba(94, 92, 230, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 85% 70%, rgba(50, 173, 230, 0.08) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.2s; }
+        ul { list-style: none; }
+
+        /* --- GLOBAL UTILITIES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section-title { font-size: 2.8rem; font-weight: 800; text-align: center; margin-bottom: 20px; letter-spacing: -1.5px;}
+        .section-subtitle { font-size: 1.1rem; color: var(--text-muted); text-align: center; max-width: 600px; margin: 0 auto 60px auto; }
+        .badge { background: rgba(94, 92, 230, 0.15); color: #5e5ce6; padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 0.8rem; display: inline-block; margin-bottom: 10px; }
+
+        /* --- BUTTONS - iOS Style --- */
+        .btn-primary { 
+            background: var(--brand-gradient); color: white; padding: 14px 28px; 
+            border-radius: 25px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 10px; transition: 0.3s var(--ease-ios);
+            box-shadow: 0 4px 15px rgba(94, 92, 230, 0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(94, 92, 230, 0.5); }
+        .btn-secondary { 
+            background: var(--ios-dark-gray); color: var(--text-main); padding: 14px 28px; 
+            border-radius: 25px; font-weight: 600; font-size: 1rem; border: 1px solid var(--border); cursor: pointer;
+            transition: 0.3s var(--ease-ios);
+        }
+        .btn-secondary:hover { background: var(--ios-gray-2); border-color: rgba(255,255,255,0.2); }
+        
+        /* Tambahan untuk tombol yang diblokir */
+        .btn-disabled { opacity: 0.5; cursor: not-allowed !important; filter: grayscale(100%); box-shadow: none !important; transform: none !important;}
+
+        /* --- HEADER / NAV - Glassmorphism --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); z-index: 1000;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo svg { width: 30px; height: 30px; }
+        .brand-text { font-size: 1.2rem; font-weight: 800; background: var(--brand-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; }
+        .brand-sub { font-size: 0.6rem; color: var(--accent-cyan); letter-spacing: 2px; font-weight: 700; margin-top: -3px;}
+
+        .nav-links { display: flex; gap: 30px; font-weight: 500; font-size: 0.9rem; }
+        .nav-links a { color: var(--text-muted); }
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-links a.active { color: var(--text-main); font-weight: 600; }
+
+        /* --- HERO SECTION --- */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 100px; padding-bottom: 60px; }
+        .hero-content { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 800px;}
+        
+        /* Official Release iOS Notification Style Badge */
+        .release-badge {
+            background: rgba(48, 209, 88, 0.1); border: 1px solid rgba(48, 209, 88, 0.3);
+            color: var(--accent-green); padding: 10px 20px; border-radius: 30px;
+            font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 10px;
+            animation: pulseFade 2s infinite; margin-bottom: 15px;
+        }
+
+        .hero h1 { font-size: 4.8rem; font-weight: 800; line-height: 1.05; letter-spacing: -3px; background: linear-gradient(180deg, white 60%, rgba(255,255,255,0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero h1 span { color: #ca8a04; } /* OLS Legacy color context */
+
+        .hero p.tagline { font-size: 1.4rem; color: var(--text-muted); max-width: 600px; margin-top: 10px; }
+        .hero .academic-meta { color: #636366; font-size: 0.9rem; margin-top: -10px;}
+
+        .hero-btns { display: flex; gap: 15px; margin-top: 30px; }
+
+        /* --- INTRO SECTION - Cards Style --- */
+        .intro { padding: 100px 0; }
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        
+        .feature-card {
+            background: var(--ios-dark-gray); border: 1px solid var(--border);
+            padding: 40px; border-radius: var(--radius-ios);
+            transition: 0.3s var(--ease-ios); position: relative; overflow: hidden;
+            display: flex; flex-direction: column; gap: 15px;
+        }
+        .feature-card:hover { border-color: rgba(94, 92, 230, 0.3); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .feature-card Icon { font-size: 2rem; color: var(--accent-indigo); margin-bottom: 10px; }
+        .feature-card h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px;}
+        .feature-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6;}
+        
+        /* Highlight specific for AI narrative reporting */
+        .feature-card.highlight { border-color: rgba(50, 173, 230, 0.4); }
+        .feature-card.highlight Icon { color: var(--accent-cyan); }
+
+        /* --- RELEASE SCHEDULE SECTION (DIAGRAM ALUR) --- */
+        .schedule { padding: 100px 0; }
+        .schedule-box {
+            background: linear-gradient(180deg, var(--ios-dark-gray) 0%, #000 100%);
+            border: 1px solid var(--border); border-radius: 24px; padding: 50px; text-align: center;
+            border-color: rgba(94, 92, 230, 0.5); box-shadow: 0 10px 40px rgba(94, 92, 230, 0.15);
+        }
+        
+        .timeline { position: relative; max-width: 600px; margin: 40px auto 0 auto; text-align: left; padding-left: 20px; }
+        /* Garis vertikal penghubung */
+        .timeline::before { content: ''; position: absolute; left: 5px; top: 10px; bottom: 10px; width: 2px; background: rgba(255,255,255,0.1); }
+        
+        .timeline-item { position: relative; display: flex; gap: 20px; margin-bottom: 35px; }
+        .timeline-dot { position: absolute; left: -21px; top: 5px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent-green); border: 3px solid var(--ios-dark-gray); z-index: 2; }
+        .timeline-content { display: flex; flex-direction: column; padding-left: 15px; }
+        .timeline-content .version { font-weight: 700; font-size: 1.1rem; margin-bottom: 5px; }
+        .timeline-content .desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+
+        /* --- FOOTER --- */
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.8rem;}
+
+        /* --- POPUP PENGUMUMAN --- */
+        .announcement-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 99999; /* Pastikan selalu paling atas */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .announcement-modal {
+            background: rgba(28, 28, 30, 0.95);
+            border: 1px solid var(--accent-cyan);
+            border-radius: var(--radius-ios);
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+            text-align: left;
+        }
+        .announcement-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.2s;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+        .announcement-close:hover {
+            color: var(--text-main);
+        }
+        .announcement-modal h3 {
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            line-height: 1.4;
+            padding-right: 30px;
+        }
+        .announcement-modal ul {
+            list-style-type: none;
+            padding-left: 0;
+            color: var(--text-main);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .announcement-modal li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+        .announcement-modal li::before {
+            content: "•";
+            color: var(--accent-indigo);
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        
+        /* --- ANIMATIONS --- */
+        @keyframes pulseFade { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+        @keyframes pulseLogo { 0% { filter: drop-shadow(0 0 5px rgba(94, 92, 230, 0.2)); } 50% { filter: drop-shadow(0 0 15px rgba(94, 92, 230, 0.4)); } 100% { filter: drop-shadow(0 0 5px rgba(94, 92, 230, 0.2)); } }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; letter-spacing: -1px; }
+            .section-title { font-size: 2.2rem; }
+            .hero-btns { flex-direction: column; gap: 10px; width: 100%; max-width: 300px; }
+            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+            .nav-links { display: none; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .feature-card { padding: 30px; }
+            .announcement-modal { padding: 30px 20px; }
+            .announcement-modal h3 { font-size: 1.2rem; }
+            .announcement-modal li { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="announcementPopup" class="announcement-overlay">
+        <div class="announcement-modal">
+            <button class="announcement-close" onclick="closeAnnouncementPopup()">&times;</button>
+            <h3>Selamat Datang dalam Laman Web Resmi FerCy Model Analytics Framework</h3>
+            <ul>
+                <li>Aplikasi FerCy Model Analytics akan rilis pada hari Senin, 23 Maret, pukul 20.00 WIB.</li>
+                <li>Aplikasi FerCy Model masih dalam tahap pengembangan periode pertama (Maret-Juli 2026).</li>
+                <li>Aplikasi FerCy Model sepenuhnya gratis, tapi dalam perkembangan ke depannya akan kami bagi dalam beberapa versi (Gratis dan Berbayar).</li>
+                <li>Aplikasi FerCy Model akan masuk ke dalam tahapan full versi nya adalah pada tahun 2027.</li>
+            </ul>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" style="animation: pulseLogo 2s infinite ease-in-out">
+                        <path d="M10 20 L30 10 M10 20 L30 30 M30 10 L30 30" stroke="url(#logoGrad)" stroke-width="2.5" fill="none" stroke-dasharray="2,2"/>
+                        <circle cx="10" cy="20" r="5" fill="#ff9f0a" />
+                        <circle cx="30" cy="10" r="6" fill="#5e5ce6" />
+                        <circle cx="30" cy="30" r="6" fill="#32ade6" />
+                        <defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#ff9f0a"/><stop offset="50%" style="stop-color:#5e5ce6"/><stop offset="100%" style="stop-color:#32ade6"/></linearGradient></defs>
+                    </svg>
+                    <div class="text-wrapper" style="display:flex; flex-direction:column;">
+                        <span class="brand-text">FerCy Model</span>
+                        <span class="brand-sub">ANALYTICS</span>
+                    </div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#hero" class="active">Beranda</a></li>
+                    <li><a href="#intro">Pengenalan</a></li>
+                    <li><a href="#schedule">Pembaruan</a></li>
+                    <li><a href="#">Dukungan</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="release-badge">
+                    <i class="fas fa-clock"></i>
+                    Akan Segera Rilis Hari Ini
+                </div>
+                
+                <h1>FerCy Model<span>:</span> <br> Analytical Framework.</h1>
+                <p class="tagline">Perangkat lunak berbasis web untuk membantu anda dalam mengolah data dan laporan otomatis.</p>
+                <p class="academic-meta">Dikembangkan oleh Feryl Ilyasa</p>
+                
+                <div class="hero-btns">
+                    <button class="btn-primary btn-disabled" onclick="alert('Mohon maaf, fitur ini ditutup sementara dan baru akan diaktifkan secara resmi pada pukul 20.00 WIB.')"><i class="fas fa-rocket"></i> Start Your Research</button>
+                    <button class="btn-secondary" onclick="alert('Ini akan membuka video atau dokumen panduan.')"><i class="fas fa-book-open"></i> Pelajari Dokumentasi</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="intro" class="intro">
+        <div class="container">
+            <div class="badge-center" style="text-align:center;"><span class="badge">Keunggulan Teknologi</span></div>
+            <h2 class="section-title">Melampaui Batas Analisis Tradisional.</h2>
+            <p class="section-subtitle">FerCy Model mengintegrasikan komputasi ketat NIPALS dengan kecerdasan buatan untuk efisiensi riset Anda.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <Icon><i class="fas fa-cog"></i></Icon>
+                    <h3>NIPALS Core Engine PLS-SEM</h3>
+                    <p>Estimasi model pengukuran dan struktural yang ketat menggunakan algoritma <i>Non-linear Iterative Partial Least Squares</i>. Memastikan konvergensi yang stabil untuk model yang kompleks, formatif, maupun reflektif.</p>
+                </div>
+
+                <div class="feature-card highlight">
+                    <Icon><i class="fas fa-robot"></i></Icon>
+                    <h3>AI Automated Narrative Reporting</h3>
+                    <p>Mentransformasikan output statistik mentah (HTMT, VAF, Path Coeff) menjadi narasi pembahasan ilmiah standar jurnal secara otomatis. Hemat waktu dalam menyusun Bab IV (Hasil) dan Bab V (Kesimpulan).</p>
+                </div>
+
+                <div class="feature-card">
+                    <Icon><i class="fas fa-project-diagram"></i></Icon>
+                    <h3>Interactive Model Builder</h3>
+                    <p>Kanvas visual intuitif untuk membangun diagram SEM. Sesuaikan korelasi, arah panah, dan estetika garis ( solid, dashed, curved) secara <i>real-time</i> dengan kontrol penuh.</p>
+                </div>
+
+                <div class="feature-card highlight">
+                    <Icon><i class="fas fa-sliders-h"></i></Icon>
+                    <h3>Simulasi Sensitivitas Proyektif</h3>
+                    <p>Ubah nilai variabel independen melalui slider dan saksikan prediksi perubahan probabilitas variabel dependen secara langsung. Alat yang kuat untuk perencanaan strategi berbasis data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="schedule">
+        <div class="container">
+            <div class="schedule-box">
+                <span class="badge" style="border-color: rgba(255,159,10,0.5); color: #ff9f0a; background: rgba(255,159,10,0.15)">Update Status / Changelog</span>
+                <h2 class="section-title" style="margin-bottom: 5px;">Diagram Alur Pembaruan</h2>
+                <p class="section-subtitle" style="margin-bottom: 20px;">Pantau terus perkembangan dan rilis fitur terbaru dari FerCy Model Analytics.</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="version" style="color: var(--accent-green);">Maret 2026: Perilisan Resmi Pertama FerCy Model Analytics (1.0)</span>
+                            <span class="desc">Perilisan penuh untuk publik. Fitur yang diaktifkan meliputi Engine NIPALS Penuh, AI Automated Reporting (Bab 4 & 5), VAF Mediation, dan Simulasi Proyektif.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" style="opacity: 0.5;">
+                        <div class="timeline-dot" style="background: var(--text-muted); border-color: var(--ios-dark-gray);"></div>
+                        <div class="timeline-content">
+                            <span class="version" style="color: var(--text-muted);">Desember 2025: Tahap Uji Coba Beta Internal (0.0)</span>
+                            <span class="desc">Pengujian fungsionalitas dasar dan stabilitas engine oleh tim internal. Penyesuaian antarmuka pengguna (UI/UX).</span>
+                        </div>
+                    </div>
+                    
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 FerCy Model Developer Team.</p>
+            <p></p>
+        </div>
+    </footer>
+
+    <script>
+        function closeAnnouncementPopup() {
+            document.getElementById('announcementPopup').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
